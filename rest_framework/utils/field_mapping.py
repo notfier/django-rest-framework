@@ -48,7 +48,10 @@ def needs_label(model_field, field_name):
     Returns `True` if the label based on the model's verbose name
     is not equal to the default label it would have based on it's field name.
     """
+    print(f'DRF #1 {model_field} // {field_name}')
     default_label = field_name.replace('_', ' ').capitalize()
+    print(f'DRF #2 {default_label}')
+    print(f'DRF #3 model_field verb name is: {model_field.verbose_name}')
     return capfirst(model_field.verbose_name) != default_label
 
 
@@ -95,7 +98,7 @@ def get_field_kwargs(field_name, model_field):
     # The following will only be used by ModelField classes.
     # Gets removed for everything else.
     kwargs['model_field'] = model_field
-
+    print(f'DRF #0 verb name is: {model_field.verbose_name}')
     if model_field.verbose_name and needs_label(model_field, field_name):
         kwargs['label'] = capfirst(model_field.verbose_name)
 
